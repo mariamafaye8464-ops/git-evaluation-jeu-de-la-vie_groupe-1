@@ -4,4 +4,6 @@ __pycache__/
 outputs/*
 !outputs/.keep
 
-# frozar_main.py
+# Vidéos et fichier intermédiaire de Gource (jamais dans Git)
+*.mp4
+*.ppm
