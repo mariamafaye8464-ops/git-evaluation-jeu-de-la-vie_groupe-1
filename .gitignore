@@ -9,3 +9,7 @@ outputs/*
 # Vidéos et fichier intermédiaire de Gource (jamais dans Git)
 *.mp4
 *.ppm
+
+# Vidéos et fichier intermédiaire de Gource (jamais dans Git)
+*.mp4
+*.ppm
