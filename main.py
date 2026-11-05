@@ -16,22 +16,22 @@ class GameOfLifeError(Exception):
 
 
 # --------------------------------------------------------------------------
-# Arguments de la ligne de commande (Erwan)
+# Arguments de la ligne de commande (Seynabou)
 # --------------------------------------------------------------------------
 
 def positive_int(value):
     """Convertir value en entier strictement positif (option --nb_cells)."""
-    raise NotImplementedError("positive_int : tâche d'Erwan")
+    raise NotImplementedError("positive_int : tâche de Seynabou")
 
 
 def non_negative_int(value):
     """Convertir value en entier positif ou nul (option --max_iterations)."""
-    raise NotImplementedError("non_negative_int : tâche d'Erwan")
+    raise NotImplementedError("non_negative_int : tâche de Seynabou")
 
 
 def parse_arguments(argv=None):
     """Lire les options -n, -m, -s, -o, -t et -p avec argparse."""
-    raise NotImplementedError("parse_arguments : tâche d'Erwan")
+    raise NotImplementedError("parse_arguments : tâche de Seynabou")
 
 
 # --------------------------------------------------------------------------
