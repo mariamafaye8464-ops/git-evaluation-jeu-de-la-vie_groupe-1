@@ -21,12 +21,28 @@ class GameOfLifeError(Exception):
 
 def positive_int(value):
     """Convertir value en entier strictement positif (option --nb_cells)."""
-    raise NotImplementedError("positive_int : tâche de Seynabou")
-
+    try:
+        number = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"invalid integer: '{value}'")
+    if number <= 0:
+        raise argparse.ArgumentTypeError(
+            f"must be a strictly positive integer, got {number}"
+        )
+    return number
 
 def non_negative_int(value):
     """Convertir value en entier positif ou nul (option --max_iterations)."""
-    raise NotImplementedError("non_negative_int : tâche de Seynabou")
+    try:
+        number = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"invalid integer: '{value}'")
+    if number < 0:
+        raise argparse.ArgumentTypeError(
+            f"must be a positive or zero integer, got {number}"
+        )
+    return number
+
 
 
 def parse_arguments(argv=None):
