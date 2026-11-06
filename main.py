@@ -213,13 +213,36 @@ def write_text_output(generations):
     print(format_grid(last_grid))
 
 
+
 # --------------------------------------------------------------------------
 # Sortie images (El Amine)
 # --------------------------------------------------------------------------
 
 def write_image_outputs(generations, output_directory):
     """Écrire un fichier grid_XXXX.png par génération."""
-    raise NotImplementedError("write_image_outputs : tâche d'El Amine")
+    directory = Path(output_directory)
+
+    try:
+        directory.mkdir(parents=True, exist_ok=True)
+    except OSError as error:
+        raise GameOfLifeError(
+            f'cannot create directory "{output_directory}": {error.strerror}'
+        )
+
+    count = 0
+
+    for iteration, grid in generations:
+        filename = directory / f"grid_{iteration:04d}.png"
+
+        write_grid(
+            matrix=grid,
+            filename=filename,
+            size=max(540, 2 * len(grid) + 1)
+        )
+
+        count += 1
+
+    print(f"Generation of {count} images in directory {output_directory}")
 
 
 # --------------------------------------------------------------------------
