@@ -40,7 +40,45 @@ def parse_arguments(argv=None):
 
 def parse_grid(text):
     """Transformer le texte reçu sur STDIN en grille carrée de 0 et de 1."""
-    raise NotImplementedError("parse_grid : tâche de Nizar")
+    lines = text.strip().splitlines()
+    if not lines:
+        raise GameOfLifeError("empty grid: nothing was read on standard input")
+
+    size_text = lines[0].strip()
+    try:
+        size = int(size_text)
+    except ValueError:
+        raise GameOfLifeError(
+            f"line 1: the grid size must be an integer, got '{size_text}'"
+        )
+    if size <= 0:
+        raise GameOfLifeError(
+            f"line 1: the grid size must be strictly positive, got {size}"
+        )
+
+    rows = lines[1:]
+    if len(rows) != size:
+        raise GameOfLifeError(
+            f"malformed grid: expected {size} rows, got {len(rows)}"
+        )
+
+    grid = []
+    for line_number, line in enumerate(rows, start=2):
+        cells = line.split()
+        if len(cells) != size:
+            raise GameOfLifeError(
+                f"line {line_number}: expected {size} cells, got {len(cells)}"
+            )
+        row = []
+        for column, cell in enumerate(cells, start=1):
+            if cell not in ("0", "1"):
+                raise GameOfLifeError(
+                    f"line {line_number}, column {column}: invalid cell "
+                    f"'{cell}', only 0 and 1 are allowed"
+                )
+            row.append(int(cell))
+        grid.append(row)
+    return grid
 
 
 def read_grid_from_stdin():
