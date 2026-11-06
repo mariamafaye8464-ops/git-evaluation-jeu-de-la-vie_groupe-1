@@ -83,7 +83,11 @@ def parse_grid(text):
 
 def read_grid_from_stdin():
     """Lire tout STDIN et renvoyer la grille correspondante."""
-    raise NotImplementedError("read_grid_from_stdin : tâche de Nizar")
+    try:
+        text = sys.stdin.read()
+    except (OSError, UnicodeDecodeError) as error:
+        raise GameOfLifeError(f"cannot read standard input: {error}")
+    return parse_grid(text)
 
 
 # --------------------------------------------------------------------------
