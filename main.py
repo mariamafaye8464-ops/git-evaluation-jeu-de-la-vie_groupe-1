@@ -21,17 +21,62 @@ class GameOfLifeError(Exception):
 
 def positive_int(value):
     """Convertir value en entier strictement positif (option --nb_cells)."""
-    raise NotImplementedError("positive_int : tâche de Seynabou")
+    try:
+        number = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"invalid integer: '{value}'")
+    if number <= 0:
+        raise argparse.ArgumentTypeError(
+            f"must be a strictly positive integer, got {number}"
+        )
+    return number
 
 
 def non_negative_int(value):
     """Convertir value en entier positif ou nul (option --max_iterations)."""
-    raise NotImplementedError("non_negative_int : tâche de Seynabou")
+    try:
+        number = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"invalid integer: '{value}'")
+    if number < 0:
+        raise argparse.ArgumentTypeError(
+            f"must be a positive or zero integer, got {number}"
+        )
+    return number
 
 
 def parse_arguments(argv=None):
     """Lire les options -n, -m, -s, -o, -t et -p avec argparse."""
-    raise NotImplementedError("parse_arguments : tâche de Seynabou")
+    parser = argparse.ArgumentParser(
+        description="Simulate Conway's Game of Life on a square grid.",
+        epilog="A grid can also be sent on STDIN, for example: "
+        "cat tests/matrix3/input.txt | python3 main.py -m 1 -t text",
+    )
+    parser.add_argument(
+        "-n", "--nb_cells", type=positive_int, default=10, metavar="N",
+        help="number of cells per side of a random grid (default: 10)",
+    )
+    parser.add_argument(
+        "-m", "--max_iterations", type=non_negative_int, default=20,
+        metavar="N", help="number of the last iteration (default: 20)",
+    )
+    parser.add_argument(
+        "-s", "--seed", type=int, default=42, metavar="N",
+        help="seed of the random generator (default: 42)",
+    )
+    parser.add_argument(
+        "-o", "--output_directory", default="outputs", metavar="DOSSIER",
+        help="directory where the images are written (default: outputs)",
+    )
+    parser.add_argument(
+        "-t", "--output_type", choices=["image", "text"], default="image",
+        metavar="TYPE", help="output type: image or text (default: image)",
+    )
+    parser.add_argument(
+        "-p", "--periodic", action="store_true",
+        help="use periodic boundary conditions (the grid is a torus)",
+    )
+    return parser.parse_args(argv)
 
 
 # --------------------------------------------------------------------------
