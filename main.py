@@ -167,7 +167,19 @@ def count_live_neighbors(grid, row, col, periodic):
 
 def next_generation(grid, periodic):
     """Calculer la génération suivante sans modifier grid."""
-    raise NotImplementedError("next_generation : tâche d'Aliou")
+    size = len(grid)
+    new_grid = []
+    for row in range(size):
+        new_row = []
+        for col in range(size):
+            neighbors = count_live_neighbors(grid, row, col, periodic)
+            alive = grid[row][col] == 1
+            if neighbors == 3 or (alive and neighbors == 2):
+                new_row.append(1)  # naissance ou survie
+            else:
+                new_row.append(0)
+        new_grid.append(new_row)
+    return new_grid
 
 
 def iterate_generations(grid, max_iterations, periodic):
