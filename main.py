@@ -172,12 +172,16 @@ def iterate_generations(grid, max_iterations, periodic):
 
 def format_grid(grid):
     """Écrire la grille en texte : cellules séparées par des espaces."""
-    raise NotImplementedError("format_grid : tâche de Seynabou")
+    return "\n".join(" ".join(str(cell) for cell in row) for row in grid)
 
 
 def write_text_output(generations):
     """Afficher sur STDOUT uniquement la dernière génération."""
-    raise NotImplementedError("write_text_output : tâche de Seynabou")
+    last_iteration, last_grid = None, None
+    for last_iteration, last_grid in generations:
+        pass  # on parcourt tout : seule la dernière génération est gardée
+    print(f"iteration: {last_iteration}")
+    print(format_grid(last_grid))
 
 
 # --------------------------------------------------------------------------
