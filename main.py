@@ -145,22 +145,50 @@ def generate_random_grid(nb_cells, seed):
 
 
 # --------------------------------------------------------------------------
-# Calcul des générations (Aliou)
+# Calcul des générations (Nizar)
 # --------------------------------------------------------------------------
 
 def count_live_neighbors(grid, row, col, periodic):
     """Compter les voisines vivantes de la cellule (row, col)."""
-    raise NotImplementedError("count_live_neighbors : tâche d'Aliou")
+    size = len(grid)
+    count = 0
+    for d_row in (-1, 0, 1):
+        for d_col in (-1, 0, 1):
+            if d_row == 0 and d_col == 0:
+                continue  # la cellule elle-même n'est pas une voisine
+            r, c = row + d_row, col + d_col
+            if periodic:
+                r, c = r % size, c % size  # le bord opposé devient voisin
+            elif not (0 <= r < size and 0 <= c < size):
+                continue  # hors de la grille : considérée comme morte
+            count += grid[r][c]
+    return count
 
 
 def next_generation(grid, periodic):
     """Calculer la génération suivante sans modifier grid."""
-    raise NotImplementedError("next_generation : tâche d'Aliou")
+    size = len(grid)
+    new_grid = []
+    for row in range(size):
+        new_row = []
+        for col in range(size):
+            neighbors = count_live_neighbors(grid, row, col, periodic)
+            alive = grid[row][col] == 1
+            if neighbors == 3 or (alive and neighbors == 2):
+                new_row.append(1)  # naissance ou survie
+            else:
+                new_row.append(0)
+        new_grid.append(new_row)
+    return new_grid
 
 
 def iterate_generations(grid, max_iterations, periodic):
     """Produire les couples (numéro, grille) de 0 à max_iterations."""
-    raise NotImplementedError("iterate_generations : tâche d'Aliou")
+    current = grid
+    yield 0, current
+    for iteration in range(1, max_iterations + 1):
+        current = next_generation(current, periodic)
+        yield iteration, current
 
 
 # --------------------------------------------------------------------------
