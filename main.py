@@ -141,8 +141,11 @@ def read_grid_from_stdin():
 
 def generate_random_grid(nb_cells, seed):
     """Créer une grille aléatoire reproductible de nb_cells x nb_cells."""
-    raise NotImplementedError("generate_random_grid : tâche de Seynabou")
-
+    rng = random.Random(seed)
+    return [
+        [rng.choice([0, 1]) for _ in range(nb_cells)]
+        for _ in range(nb_cells)
+    ]
 
 # --------------------------------------------------------------------------
 # Calcul des générations (Nizar)
