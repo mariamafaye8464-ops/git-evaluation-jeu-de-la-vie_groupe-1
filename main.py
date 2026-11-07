@@ -184,7 +184,11 @@ def next_generation(grid, periodic):
 
 def iterate_generations(grid, max_iterations, periodic):
     """Produire les couples (numéro, grille) de 0 à max_iterations."""
-    raise NotImplementedError("iterate_generations : tâche d'Aliou")
+    current = grid
+    yield 0, current
+    for iteration in range(1, max_iterations + 1):
+        current = next_generation(current, periodic)
+        yield iteration, current
 
 
 # --------------------------------------------------------------------------
