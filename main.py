@@ -31,6 +31,7 @@ def positive_int(value):
         )
     return number
 
+
 def non_negative_int(value):
     """Convertir value en entier positif ou nul (option --max_iterations)."""
     try:
@@ -42,7 +43,6 @@ def non_negative_int(value):
             f"must be a positive or zero integer, got {number}"
         )
     return number
-
 
 
 def parse_arguments(argv=None):
