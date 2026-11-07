@@ -145,12 +145,24 @@ def generate_random_grid(nb_cells, seed):
 
 
 # --------------------------------------------------------------------------
-# Calcul des générations (Aliou)
+# Calcul des générations (Nizar)
 # --------------------------------------------------------------------------
 
 def count_live_neighbors(grid, row, col, periodic):
     """Compter les voisines vivantes de la cellule (row, col)."""
-    raise NotImplementedError("count_live_neighbors : tâche d'Aliou")
+    size = len(grid)
+    count = 0
+    for d_row in (-1, 0, 1):
+        for d_col in (-1, 0, 1):
+            if d_row == 0 and d_col == 0:
+                continue  # la cellule elle-même n'est pas une voisine
+            r, c = row + d_row, col + d_col
+            if periodic:
+                r, c = r % size, c % size  # le bord opposé devient voisin
+            elif not (0 <= r < size and 0 <= c < size):
+                continue  # hors de la grille : considérée comme morte
+            count += grid[r][c]
+    return count
 
 
 def next_generation(grid, periodic):
