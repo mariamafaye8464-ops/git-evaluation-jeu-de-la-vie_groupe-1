@@ -4,7 +4,58 @@ Simulation en Python du [jeu de la vie de Conway](https://fr.wikipedia.org/wiki/
 
 ## Installation
 
-_À compléter par El Amine (PR 9)._
+Le programme n'a besoin que de **Python 3.8 ou plus récent** et de sa bibliothèque standard : aucun paquet `pip` n'est à installer. Les scripts de test s'exécutent avec `sh` dans un terminal Unix. Pour produire les vidéos, il faut aussi `ffmpeg` (vidéo de simulation) et Gource (vidéo de l'historique du dépôt).
+
+### Ubuntu ou Debian
+
+```sh
+sudo apt update
+sudo apt install python3 git ffmpeg gource
+```
+
+### macOS
+
+Avec [Homebrew](https://brew.sh/) :
+
+```sh
+brew install python git ffmpeg gource
+```
+
+### Windows
+
+Dans PowerShell, avec [winget](https://learn.microsoft.com/fr-fr/windows/package-manager/winget/) :
+
+```powershell
+winget install --id Git.Git -e
+winget install 9NQ7512CXL7T
+winget install --id Gyan.FFmpeg -e
+winget install --id acaudwell.Gource -e
+```
+
+`Git.Git` installe Git et **Git Bash**, le terminal qui fournit `sh` pour les scripts de test. `9NQ7512CXL7T` est le gestionnaire d'installation officiel de Python. Fermez puis rouvrez le terminal, et lancez la suite des commandes dans **Git Bash**. Si `python3` n'est pas trouvé, lancez `py install --configure` et acceptez l'ajout au `PATH`.
+
+Dans Git Bash, une grille aléatoire (sans grille envoyée sur l'entrée standard) se lance avec `winpty` : `winpty python3 main.py -n 20 -m 5`.
+
+Autre possibilité : installer [WSL](https://learn.microsoft.com/fr-fr/windows/wsl/install) avec `wsl --install` dans PowerShell ouvert en administrateur, redémarrer l'ordinateur, puis suivre la partie [Ubuntu ou Debian](#ubuntu-ou-debian) dans Ubuntu.
+
+### Récupérer le projet
+
+```sh
+git clone https://github.com/mariamafaye8464-ops/git-evaluation-jeu-de-la-vie_groupe-1.git
+cd git-evaluation-jeu-de-la-vie_groupe-1
+```
+
+### Vérifier l'installation
+
+```sh
+python3 --version              # Python 3.8 ou plus récent
+ffmpeg -version
+gource --version
+sh check_script_options.sh     # Nb test success: 6 / 6
+sh check_tests.sh              # Nb test success: 74 / 74
+sh check_errors.sh             # Nb test success: 16 / 16
+```
+
 
 ## Exécution
 
