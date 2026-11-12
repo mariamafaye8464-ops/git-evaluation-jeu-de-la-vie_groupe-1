@@ -59,7 +59,41 @@ sh check_errors.sh             # Nb test success: 16 / 16
 
 ## Exécution
 
-_À compléter par Seynabou (PR 10)._
+Toutes les commandes se lancent depuis la racine du dépôt.
+
+### Sans option : 21 images dans `outputs`
+
+```bash
+$ python3 main.py
+Generation of 21 images in directory outputs
+```
+
+### Grille lue sur l'entrée standard
+
+```bash
+$ cat tests/matrix3/input.txt | python3 main.py -m 1 -t text
+iteration: 1
+0 1 0
+0 0 1
+0 1 0
+```
+
+### Bords périodiques
+
+```bash
+$ cat tests/matrix3/input.txt | python3 main.py -m 1 -p -t text
+iteration: 1
+0 0 0
+0 0 0
+0 0 0
+```
+
+### Grille invalide
+
+```bash
+$ printf '2\n1 0\n0 2\n' | python3 main.py -t text
+Error: line 3, column 2: invalid cell '2', only 0 and 1 are allowed
+```
 
 ## Arguments
 
