@@ -21,3 +21,6 @@ jobs:
 
       - name: Vérifier les grilles de test
         run: sh check_tests.sh
+
+      - name: Vérifier les cas d'erreur
+        run: sh check_errors.sh
