@@ -97,7 +97,40 @@ Error: line 3, column 2: invalid cell '2', only 0 and 1 are allowed
 
 ## Arguments
 
-_À compléter par Nizar (PR 11)._
+Le programme se règle avec les options ci-dessous. Chaque option existe sous une forme courte et une forme longue, qui font exactement la même chose. La commande `python3 main.py --help` affiche ce résumé dans le terminal.
+
+| Option courte | Option longue | Rôle | Valeur par défaut |
+|---|---|---|---|
+| `-n N` | `--nb_cells N` | taille de la grille aléatoire (N cellules par côté) | `10` |
+| `-m N` | `--max_iterations N` | numéro de la dernière génération calculée | `20` |
+| `-s N` | `--seed N` | graine du générateur aléatoire | `42` |
+| `-o DOSSIER` | `--output_directory DOSSIER` | dossier où sont écrites les images (créé s'il n'existe pas) | `outputs` |
+| `-t TYPE` | `--output_type TYPE` | `image` : un fichier PNG par génération ; `text` : la dernière génération sur la sortie standard | `image` |
+| `-p` | `--periodic` | bords périodiques : la grille se referme sur elle-même, comme un tore | désactivée |
+| `-h` | `--help` | affiche l'aide et quitte | — |
+
+Valeurs acceptées :
+
+- `-n` : un entier strictement positif (`-n 0` ou `-n abc` sont refusés).
+- `-m` : un entier positif ou nul. La génération initiale porte le numéro `0` : avec `-m 20`, le programme produit 21 générations, de `0` à `20`.
+- `-s` : n'importe quel entier, négatif, nul ou positif. La même graine avec la même taille donne toujours la même grille.
+- `-t` : uniquement `image` ou `text`.
+- `-n` et `-s` ne servent qu'à la grille aléatoire : quand une grille est envoyée sur l'entrée standard, ils n'ont aucun effet.
+
+Une option invalide affiche l'usage du programme et un message d'erreur sur la sortie d'erreur, puis le programme s'arrête avec le code de sortie `2` (voir les exemples de la section Exécution).
+
+Les formes longues rendent une commande plus lisible :
+
+```bash
+$ python3 main.py --nb_cells 4 --seed 3 --max_iterations 2 --output_type text --periodic
+iteration: 2
+0 0 1 0
+0 0 0 0
+0 0 1 0
+0 0 0 0
+```
+
+La commande courte équivalente est `python3 main.py -n 4 -s 3 -m 2 -t text -p`.
 
 ## Vidéos
 
