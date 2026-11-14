@@ -165,12 +165,42 @@ _À compléter par Nizar (PR 14)._
 
 ## Intégration continue
 
-_À compléter par Mariama (PR 13)._
+Les scripts de test du projet sont lancés automatiquement par GitHub Actions, à chaque `push` et à chaque Pull Request. Le workflow est décrit dans le fichier [`.github/workflows/tests.yml`](.github/workflows/tests.yml).
+
+[![Tests](https://github.com/mariamafaye8464-ops/git-evaluation-jeu-de-la-vie_groupe-1/actions/workflows/tests.yml/badge.svg)](https://github.com/mariamafaye8464-ops/git-evaluation-jeu-de-la-vie_groupe-1/actions/workflows/tests.yml)
+
+Le workflow s'exécute sous Ubuntu avec Python 3.12. Il récupère le contenu du dépôt, puis lance depuis sa racine :
+
+- `sh check_script_options.sh` : vérifie les options du programme (6 tests) ;
+- `sh check_tests.sh` : compare la sortie texte du programme aux générations attendues du dossier `tests/`, avec des bords fixes et périodiques (74 tests) ;
+- `sh check_errors.sh` : vérifie que les entrées invalides sont refusées avec un message d'erreur (16 tests).
+
+Si l'un des scripts se termine avec un code de sortie différent de `0`, le job `tests` échoue. Comme la branche `main` est protégée, GitHub refuse alors de fusionner la Pull Request.
+
+Exécution réussie des scripts : [Tests sur `main` après la fusion de la PR #15](https://github.com/mariamafaye8464-ops/git-evaluation-jeu-de-la-vie_groupe-1/actions/runs/43579095118).
 
 ## Auteurs
 
-_À compléter par Mariama (PR 13)._
+| Nom | Prénom | Numéro étudiant | Compte GitHub |
+| --- | --- | --- | --- |
+| AHMED | Nizar | 44000017 | [nizar97420](https://github.com/nizar97420) |
+| FAYE | Mariama | 45006151 | [mariamafaye8464-ops](https://github.com/mariamafaye8464-ops) |
+| GNING | Aliou | 45005814 | [aliougning2003-del](https://github.com/aliougning2003-del) |
+| GUEYE | Seynabou | 45006935 | [12seynabou1006-gif](https://github.com/12seynabou1006-gif) |
+| HOUSSENI | El Amine | 41000045 | [Hsn-976](https://github.com/Hsn-976) |
 
 ## Liens utiles
 
-_À compléter par Mariama (PR 13)._
+- [Jeu de la vie](https://fr.wikipedia.org/wiki/Jeu_de_la_vie) : règles du jeu de Conway, utilisées pour le calcul des générations,
+- [Documentation argparse](https://docs.python.org/fr/3/library/argparse.html) : lecture des options de la ligne de commande,
+- [Documentation random](https://docs.python.org/fr/3/library/random.html) : génération de grilles aléatoires reproductibles avec une graine,
+- [Documentation pathlib](https://docs.python.org/fr/3/library/pathlib.html) : création du dossier où sont écrites les images,
+- [Workshop 3 : rebase et historique final](https://github.com/frozar/git-workshop-3) : organisation Git suivie pour les branches, les Pull Requests et le rebase,
+- [Documentation officielle de git rebase](https://git-scm.com/book/fr/v2/Les-branches-avec-Git-Rebaser-Rebasing) : mise à jour d'une branche avant sa fusion,
+- [À propos des branches protégées](https://docs.github.com/fr/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) : protection de la branche `main`, avec relecture et tests obligatoires,
+- [Revues de Pull Requests](https://docs.github.com/fr/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews) : relecture de chaque Pull Request par un autre membre du groupe,
+- [Syntaxe des workflows GitHub Actions](https://docs.github.com/fr/actions/reference/workflows-and-actions/workflow-syntax) : écriture du fichier `.github/workflows/tests.yml`,
+- [Git pour Windows](https://gitforwindows.org/) : installation de Git et de Git Bash sous Windows,
+- [Utiliser WinGet](https://learn.microsoft.com/fr-fr/windows/package-manager/winget/) : installation des outils en ligne de commande sous Windows,
+- [Documentation ffmpeg](https://ffmpeg.org/documentation.html) : assemblage des images de la simulation en vidéo,
+- [Site officiel de Gource](https://gource.io/) : création de la vidéo de l'historique du dépôt.
