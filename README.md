@@ -181,7 +181,13 @@ Exécution réussie des scripts : [Tests sur `main` après la fusion de la PR #1
 
 ## Auteurs
 
-_À compléter par Mariama (PR 13)._
+| Nom | Prénom | Numéro étudiant | Compte GitHub |
+| --- | --- | --- | --- |
+| AHMED | Nizar | 44000017 | [nizar97420](https://github.com/nizar97420) |
+| FAYE | Mariama | 45006151 | [mariamafaye8464-ops](https://github.com/mariamafaye8464-ops) |
+| GNING | Aliou | 45005814 | [aliougning2003-del](https://github.com/aliougning2003-del) |
+| GUEYE | Seynabou | 45006935 | [12seynabou1006-gif](https://github.com/12seynabou1006-gif) |
+| HOUSSENI | El Amine | 41000045 | [Hsn-976](https://github.com/Hsn-976) |
 
 ## Liens utiles
 
