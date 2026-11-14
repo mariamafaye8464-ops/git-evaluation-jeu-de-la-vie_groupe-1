@@ -136,7 +136,28 @@ La commande courte équivalente est `python3 main.py -n 4 -s 3 -m 2 -t text -p`.
 
 ### Simulation du jeu de la vie
 
-_À compléter par Aliou (PR 12)._
+Vidéo sur YouTube : [Simulation du jeu de la vie, graine 4200](https://www.youtube.com/watch?v=KoEg7bJJm7Q)
+
+La vidéo montre l'évolution d'une grille aléatoire de 50 cellules par côté, créée avec la graine `4200`, de la génération `0` à la génération `2000`, avec des bords fixes (sans l'option `-p`). Avec la même graine, `main.py` produit exactement les mêmes images à chaque exécution.
+
+Commandes utilisées, depuis la racine du dépôt :
+
+```bash
+mkdir -p outputs/video-seed-4200
+python3 main.py --nb_cells 50 --max_iterations 2000 --seed 4200 \
+  --output_type image --output_directory outputs/video-seed-4200
+ffmpeg -y -framerate 20 -start_number 0 \
+  -i outputs/video-seed-4200/grid_%04d.png -frames:v 2001 \
+  -vf "scale=1080:1080:flags=neighbor,pad=1920:1080:(ow-iw)/2:(oh-ih)/2" \
+  -c:v libx264 -pix_fmt yuv420p -movflags +faststart \
+  outputs/video-seed-4200/game-of-life.mp4
+```
+
+- `main.py` écrit 2001 images, de `grid_0000.png` à `grid_2000.png`, et affiche `Generation of 2001 images in directory outputs/video-seed-4200`.
+- `ffmpeg` assemble ces images dans l'ordre, à 20 images par seconde : la vidéo dure 1 minute et 40 secondes.
+- L'option `-vf` agrandit chaque image deux fois sans flou, puis ajoute des bandes noires sur les côtés. La vidéo est ainsi au format 16:9 (1920 × 1080), et YouTube la publie comme une vidéo classique plutôt que comme un Short.
+- Les images et la vidéo restent dans `outputs/`, qui n'est pas suivi par Git (voir `.gitignore`).
+- Sous Windows, ces commandes fonctionnent telles quelles dans Git Bash. Si `python3 main.py` attend sans rien afficher, appuyez sur Ctrl+C et relancez la commande avec `winpty` devant.
 
 ### Historique du dépôt avec Gource
 
