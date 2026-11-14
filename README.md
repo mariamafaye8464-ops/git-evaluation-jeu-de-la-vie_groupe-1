@@ -191,4 +191,16 @@ Exécution réussie des scripts : [Tests sur `main` après la fusion de la PR #1
 
 ## Liens utiles
 
-_À compléter par Mariama (PR 13)._
+- [Jeu de la vie](https://fr.wikipedia.org/wiki/Jeu_de_la_vie) : règles du jeu de Conway, utilisées pour le calcul des générations,
+- [Documentation argparse](https://docs.python.org/fr/3/library/argparse.html) : lecture des options de la ligne de commande,
+- [Documentation random](https://docs.python.org/fr/3/library/random.html) : génération de grilles aléatoires reproductibles avec une graine,
+- [Documentation pathlib](https://docs.python.org/fr/3/library/pathlib.html) : création du dossier où sont écrites les images,
+- [Workshop 3 : rebase et historique final](https://github.com/frozar/git-workshop-3) : organisation Git suivie pour les branches, les Pull Requests et le rebase,
+- [Documentation officielle de git rebase](https://git-scm.com/book/fr/v2/Les-branches-avec-Git-Rebaser-Rebasing) : mise à jour d'une branche avant sa fusion,
+- [À propos des branches protégées](https://docs.github.com/fr/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) : protection de la branche `main`, avec relecture et tests obligatoires,
+- [Revues de Pull Requests](https://docs.github.com/fr/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews) : relecture de chaque Pull Request par un autre membre du groupe,
+- [Syntaxe des workflows GitHub Actions](https://docs.github.com/fr/actions/reference/workflows-and-actions/workflow-syntax) : écriture du fichier `.github/workflows/tests.yml`,
+- [Git pour Windows](https://gitforwindows.org/) : installation de Git et de Git Bash sous Windows,
+- [Utiliser WinGet](https://learn.microsoft.com/fr-fr/windows/package-manager/winget/) : installation des outils en ligne de commande sous Windows,
+- [Documentation ffmpeg](https://ffmpeg.org/documentation.html) : assemblage des images de la simulation en vidéo,
+- [Site officiel de Gource](https://gource.io/) : création de la vidéo de l'historique du dépôt.
