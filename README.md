@@ -161,7 +161,24 @@ ffmpeg -y -framerate 20 -start_number 0 \
 
 ### Historique du dépôt avec Gource
 
-_À compléter par Nizar (PR 14)._
+Vidéo sur YouTube : [Historique du dépôt avec Gource](https://www.youtube.com/watch?v=4oTprurVHrY)
+
+La vidéo montre l'évolution du dépôt du 5 au 14 novembre 2026. Les fichiers apparaissent sous forme d'arbre et les contributeurs sous forme de personnages qui les modifient, commit après commit. Elle a été générée après la fusion de toutes les autres Pull Requests, pour montrer l'historique complet du travail du groupe.
+
+Commande utilisée, depuis la racine du dépôt :
+
+```bash
+gource -1280x720 -s 2 -r 60 --file-font-size 8 \
+  --title 'Jeu de la vie' --filename-time 2 \
+  --stop-at-end --hide date,usernames -o - | \
+ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i - \
+  -vcodec libx264 -preset medium -pix_fmt yuv420p \
+  -crf 18 -threads 0 -bf 0 gource.mp4
+```
+
+- `gource` dessine l'historique du dépôt en 1280 × 720, à raison de 2 secondes par jour (`-s 2`) et de 60 images par seconde, puis écrit les images au format PPM sur la sortie standard (`-o -`).
+- Le pipe `|` transmet ces images à `ffmpeg`, qui les lit sur son entrée standard (`-i -`) et les encode en MP4 dans le fichier `gource.mp4`.
+- La vidéo dure environ 33 secondes. Le fichier `gource.mp4` n'est pas suivi par Git (règle `*.mp4` du `.gitignore`).
 
 ## Intégration continue
 
