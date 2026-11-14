@@ -165,7 +165,19 @@ _À compléter par Nizar (PR 14)._
 
 ## Intégration continue
 
-_À compléter par Mariama (PR 13)._
+Les scripts de test du projet sont lancés automatiquement par GitHub Actions, à chaque `push` et à chaque Pull Request. Le workflow est décrit dans le fichier [`.github/workflows/tests.yml`](.github/workflows/tests.yml).
+
+[![Tests](https://github.com/mariamafaye8464-ops/git-evaluation-jeu-de-la-vie_groupe-1/actions/workflows/tests.yml/badge.svg)](https://github.com/mariamafaye8464-ops/git-evaluation-jeu-de-la-vie_groupe-1/actions/workflows/tests.yml)
+
+Le workflow s'exécute sous Ubuntu avec Python 3.12. Il récupère le contenu du dépôt, puis lance depuis sa racine :
+
+- `sh check_script_options.sh` : vérifie les options du programme (6 tests) ;
+- `sh check_tests.sh` : compare la sortie texte du programme aux générations attendues du dossier `tests/`, avec des bords fixes et périodiques (74 tests) ;
+- `sh check_errors.sh` : vérifie que les entrées invalides sont refusées avec un message d'erreur (16 tests).
+
+Si l'un des scripts se termine avec un code de sortie différent de `0`, le job `tests` échoue. Comme la branche `main` est protégée, GitHub refuse alors de fusionner la Pull Request.
+
+Exécution réussie des scripts : [Tests sur `main` après la fusion de la PR #15](https://github.com/mariamafaye8464-ops/git-evaluation-jeu-de-la-vie_groupe-1/actions/runs/43579095118).
 
 ## Auteurs
 
